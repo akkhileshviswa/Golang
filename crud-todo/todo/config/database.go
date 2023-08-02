@@ -46,15 +46,11 @@ func Database() *sql.DB {
 
 	_, err = database.Exec(`CREATE DATABASE IF NOT EXISTS gotodo`)
 
-	if err != nil {
-		fmt.Println(err)
-	}
+	handleError(err)
 
 	_, err = database.Exec(`USE gotodo`)
 
-	if err != nil {
-		fmt.Println(err)
-	}
+	handleError(err)
 
 	_, err = database.Exec(`
 		CREATE TABLE IF NOT EXISTS todos (
@@ -65,9 +61,21 @@ func Database() *sql.DB {
 		);
 	`)
 
+	handleError(err)
+
+	return database
+}
+
+/*
+ * This function is used to handle the error function
+ *
+ * @param err error
+ * @return bool
+ */
+func handleError(err error) bool {
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	return database
+	return true
 }

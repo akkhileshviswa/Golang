@@ -33,7 +33,7 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 	model.Add(item)
 
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	redirect(w, r)
 }
 
 /*
@@ -57,7 +57,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 
 	model.Update(id, item)
 
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	redirect(w, r)
 }
 
 /*
@@ -69,7 +69,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 
 	model.Delete(id)
 
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	redirect(w, r)
 }
 
 /*
@@ -81,5 +81,15 @@ func Complete(w http.ResponseWriter, r *http.Request) {
 
 	model.Complete(id)
 
+	redirect(w, r)
+}
+
+/*
+ * This function is used to redirect to home page
+ *
+ * @param http.ResponseWriter w
+ * @param *http.Request r
+ */
+func redirect(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }

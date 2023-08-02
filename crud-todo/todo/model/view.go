@@ -33,18 +33,14 @@ var (
 func Show() View {
 	statement, err := database.Query(`SELECT * FROM todos`)
 
-	if err != nil {
-		panic(err.Error())
-	}
+	handleError(err)
 
 	var todos []Todo
 
 	for statement.Next() {
 		err = statement.Scan(&id, &item, &completed)
 
-		if err != nil {
-			panic(err.Error())
-		}
+		handleError(err)
 
 		todo := Todo{
 			Id:        id,
@@ -72,9 +68,7 @@ func Add(item string) bool {
 	if item != "" {
 		_, err := database.Exec(`INSERT INTO todos (item) VALUE (?)`, item)
 
-		if err != nil {
-			panic(err.Error())
-		}
+		handleError(err)
 	} else {
 		fmt.Printf("Item should not be empty")
 	}
@@ -90,9 +84,8 @@ func Add(item string) bool {
  */
 func Edit(id string) View {
 	statement, err := database.Query("SELECT * FROM todos WHERE id=?", id)
-	if err != nil {
-		panic(err.Error())
-	}
+
+	handleError(err)
 
 	var todos []Todo
 
@@ -101,9 +94,7 @@ func Edit(id string) View {
 		var item string
 		err = statement.Scan(&id, &item, &completed)
 
-		if err != nil {
-			panic(err.Error())
-		}
+		handleError(err)
 
 		todo := Todo{
 			Id:        id,
@@ -132,9 +123,8 @@ func Update(id string, item string) bool {
 	if item != "" {
 		_, err := database.Exec(`UPDATE todos SET item = ? WHERE id = ?`, item, id)
 
-		if err != nil {
-			panic(err.Error())
-		}
+		handleError(err)
+
 	} else {
 		fmt.Printf("Item should not be empty")
 	}
@@ -151,9 +141,7 @@ func Update(id string, item string) bool {
 func Delete(id string) bool {
 	_, err := database.Exec(`DELETE FROM todos WHERE id = ?`, id)
 
-	if err != nil {
-		panic(err.Error())
-	}
+	handleError(err)
 
 	return true
 }
@@ -167,6 +155,18 @@ func Delete(id string) bool {
 func Complete(id string) bool {
 	_, err := database.Exec(`UPDATE todos SET completed = 1 WHERE id = ?`, id)
 
+	handleError(err)
+
+	return true
+}
+
+/*
+ * This function is used to handle the error function
+ *
+ * @param err error
+ * @return bool
+ */
+func handleError(err error) bool {
 	if err != nil {
 		panic(err.Error())
 	}
