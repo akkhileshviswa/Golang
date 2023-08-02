@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+          integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <title>Todo</title>
+</head>
+
+<body>
+    <div style="text-align: center;"><h1>Todos</h1></div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Edit the task</div>
+            <div class="card-body">
+                <form action="/update" method="post">
+                    <div class="form-group">
+                        {{range .Todos}}
+                        <input type="hidden" name="id" value="{{.Id }}" />
+                        <label for="Item">Item</label>
+                        <input type="text" class="form-control" name="item" value="{{.Item}}" />
+                        {{end}}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
