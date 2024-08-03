@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&family=Kanit:ital,wght@0,500;1,200&display=swap');
+
+body{
+  background: #ddd;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 38px;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+form{
+  width: 443px;
+  margin: 50px auto;
+  padding: 50px;
+}
+
+input {
+  font-family: 'Kanit', sans-serif;
+  font-size: 20px;
+}
+
+.info{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.info input {
+  display: block;
+  width: 300px;
+  height: 20px;
+  border: 0;
+  border-radius: 3px;
+  margin: 5px 0 0;
+  padding: 12px 10px;
+  background: #fff;
+}
+
+.info input:last-child {
+  margin: 0;
+}
+
+.info input:focus {
+  background: #eee;
+  outline: none;
+}
+
+input[type="submit"]{
+  vertical-align: top;
+  height: 210px;
+  width: 113px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: pink;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(45deg, #FF6C54, #FFA754);
+}
+
+input[type="submit"]:hover{
+  background: linear-gradient(180deg, #FF6C54, #FFA754);
+}
+
+.info span {
+  color: #FF6C54;
+}
